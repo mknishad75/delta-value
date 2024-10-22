@@ -7,8 +7,7 @@ from deltacalculate.kiteapp import *
 from kiteconnect import KiteConnect
 import pandas as pd
 from datetime import datetime, date
-import time
-import pywhatkit as kit
+import pywhatkit as payval
 from decimal import Decimal
 
 
@@ -201,7 +200,7 @@ def callEveryMinute(pe,ce,expirydate):
     value = deltaVal + deltaString
     print("delta is:::",value)
 
-    kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
+    payval.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
     print("going to start take new psotion")
     if abs(cedelta) < abs(pedelta):
         print("going to exit ce position")
