@@ -1,0 +1,13 @@
+
+
+class CreateToken:
+    def token(name, userId, token):
+        # Open the file in 'write' mode (overwrites any existing content)
+      with open('enctoken.txt', 'w') as file:
+       file.write(token)
+      with open('userdetail.txt', 'w') as user: 
+       user.write(name)
+      with open('usercode.txt', 'w') as usercode:  
+       usercode.write(userId)
+       
+      return 'Sucessfully added' 
