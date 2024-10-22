@@ -1,9 +1,9 @@
 import requests
 import math
 from scipy.stats import norm
-import calculatedelta as delta
+import deltacalculate.calculatedelta as delta
 from scipy.optimize import brentq
-from kiteapp import *
+from deltacalculate.kiteapp import *
 from kiteconnect import KiteConnect
 import pandas as pd
 from datetime import datetime, date
@@ -72,11 +72,11 @@ def callEveryMinute(pe,ce,expirydate):
  # option_chain_data = fetch_nifty_option_chain()
 # print(option_chain_data)
 
- with open("enctoken.txt") as f1:
+ with open("deltacalculate/enctoken.txt") as f1:
     enctoken = f1.read()
- with open("userdetail.txt") as user:
+ with open("deltacalculate/userdetail.txt") as user:
     username = user.read()
- with open("usercode.txt") as code:
+ with open("deltacalculate/usercode.txt") as code:
     usercode = code.read()       
  kite = KiteApp(username, usercode, enctoken)
 

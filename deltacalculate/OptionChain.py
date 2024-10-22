@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime as dt
-from kiteapp import *
+from deltacalculate.kiteapp import *
 from time import sleep
 import xlwings as xw  # pip install xlwings
 

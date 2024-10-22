@@ -1,6 +1,6 @@
-import kiteapp as kt
+import deltacalculate.kiteapp as kt
 import pandas as pd
-import option as tt
+import deltacalculate.option as tt
 from time import sleep
 with open('enctoken.txt', 'r') as rd:
 	token = rd.read()

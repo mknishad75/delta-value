@@ -1,5 +1,5 @@
 import time
-import getOption as delta
+import deltacalculate.getOption as delta
 from datetime import datetime
 import pywhatkit as kit
 
