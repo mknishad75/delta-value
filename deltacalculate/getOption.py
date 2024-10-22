@@ -31,8 +31,7 @@ def callEveryMinute(pe,ce,expirydate):
 
  def get_option_chain_for_expiry(symbol, expiry_date):
         # Define the URL for fetching option chain data
-        url = f"https://www.nseindia.com/api/option-chain-indices?symbol={
-            symbol}"
+        url = "https://www.nseindia.com/api/option-chain-indices?symbol=NIFTY"
 
         # Define the headers for the request
         headers = {
