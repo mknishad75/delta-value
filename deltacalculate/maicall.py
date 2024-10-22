@@ -1,7 +1,7 @@
 import time
 import deltacalculate.getOption as delta
 from datetime import datetime
-import pywhatkit as kit
+#import pywhatkit as kit
 
 count = 0
 
@@ -27,7 +27,7 @@ def recall(count, pe, ce,expirydate):
               string_num = str(deltaValue)
               value = deltaVal + string_num
               count =0
-              kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
+              #kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
               print("hey i am ready", count)
             print("Current Date and Time:", current_datetime)
             time.sleep(60)  # Wait for 60 seconds before running again
@@ -83,7 +83,7 @@ class DeltaValue:
             string_num = str(deltaValue)
             value = deltaVal + string_num
             count =0
-            kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
+            #kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
             print("hey i am ready", count)
         time.sleep(80)  # Wait for 60 seconds before running again
   except Exception as e:
