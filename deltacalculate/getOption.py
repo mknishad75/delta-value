@@ -16,7 +16,10 @@ logging.basicConfig(
 )
 
 def callEveryMinute(pe,ce,expirydate):
- logging.info("detail:: -----", pe, ce, expirydate)
+   
+ logging.info(f"detail PE is :{pe}")
+ logging.info(f"detail CE is :{ce}")
+ logging.info(f"detail Expiry is :{expirydate}")
  # Fetch Nifty option chain data from NSE API
  def fetch_nifty_option_chain():
         url = "https://www.nseindia.com/api/option-chain-indices?symbol=NIFTY"
@@ -44,7 +47,7 @@ def callEveryMinute(pe,ce,expirydate):
 
         # Fetch data from NSE
         response = requests.get(url, headers=headers, verify=False)
-        logging.info("response:: -----", response)
+        #logging.info("response:: -----", response)
         # Parse the response as JSON
         data = response.json()
 
@@ -68,7 +71,7 @@ def callEveryMinute(pe,ce,expirydate):
  #expiry_date = "28-Nov-2024"  # Define the expiry date you want to filter
  expiry_date = expirydate
  filtered_option_chain = get_option_chain_for_expiry(symbol, expiry_date)
- logging.info("filtered_option_chain -----", filtered_option_chain)
+ #logging.info("filtered_option_chain -----", filtered_option_chain)
 
 # Example usage
  # option_chain_data = fetch_nifty_option_chain()
