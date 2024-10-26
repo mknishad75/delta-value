@@ -66,10 +66,10 @@ class DeltaValue:
             {"id": 1, "name": "Item 1", "price": 10.0},
             {"id": 2, "name": "Item 2", "price": 20.0},
         ]
- def calling(self,pe,ce,expirydate):
+ def calling(pe,ce,expirydate):
   count = 0
   try:
-    print("Task is running...")
+    print("Task Startd to run...")
     while True:
        
         deltaValue =delta.callEveryMinute(pe,ce,expirydate)
