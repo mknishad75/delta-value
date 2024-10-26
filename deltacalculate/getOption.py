@@ -15,7 +15,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-def callEveryMinute(pe,ce,expirydate):
+def callEveryMinute(self,pe,ce,expirydate):
  logging.info("detail:: -----", pe, ce, expirydate)
  # Fetch Nifty option chain data from NSE API
  def fetch_nifty_option_chain():
