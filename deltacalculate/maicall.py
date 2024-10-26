@@ -60,18 +60,13 @@ items = [
 
 class DeltaValue:
 
- def __init__(self):
-        # Simulating a simple in-memory "database"
-        self.items = [
-            {"id": 1, "name": "Item 1", "price": 10.0},
-            {"id": 2, "name": "Item 2", "price": 20.0},
-        ]
- def calling(pe,ce,expirydate):
+
+ def calling(self,pe,ce,expirydate):
   count = 0
   try:
-    print("Task Startd to run...")
+    
     while True:
-       
+        print("Task is Started to run...")
         deltaValue =delta.callEveryMinute(pe,ce,expirydate)
         count = count+1 # Run the task
         print("Running -----")
