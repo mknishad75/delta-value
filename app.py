@@ -20,8 +20,8 @@ logging.basicConfig(
 st.title("Streamlit with Integrated Flask API")
 
 with st.form("user_form"):
- pe = st.number_input("Enter the first number", placeholder="Type PE here...")
- ce = st.number_input("Enter the second number", placeholder="Type CE here...")
+ pe = st.text_input("Enter the first number", placeholder="Type PE here...")
+ ce = st.text_input("Enter the second number", placeholder="Type CE here...")
  expirydate = st.text_input("Enter the second number",placeholder="Type expiry here...")
  submitted = st.form_submit_button("Submit")
  
