@@ -12,7 +12,7 @@ from decimal import Decimal
 
 
 def callEveryMinute(pe,ce,expirydate):
-
+ logging.info("detail:: -----", pe, ce, expirydate)
  # Fetch Nifty option chain data from NSE API
  def fetch_nifty_option_chain():
         url = "https://www.nseindia.com/api/option-chain-indices?symbol=NIFTY"
