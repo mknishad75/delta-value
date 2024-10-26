@@ -4,6 +4,7 @@ from flask import Flask, jsonify
 import streamlit as st
 from flask import Flask, jsonify
 from deltacalculate.maicall import DeltaValue, CreateToken
+import logging
 
 # Flask API Setup
 
@@ -22,6 +23,7 @@ with st.form("user_form"):
  
 if submitted:    
    if pe and ce and expirydate:
+       logging.info("Entred in method -----")
        item = value.calling(pe,ce,expirydate)
        
 st.title("Fill the form to create the token")
@@ -33,6 +35,7 @@ with st.form("create_token"):
  
 if submitted:    
    if name and id and token:
+        logging.info("Entred in method -----")
         msg =getToken.token(name,id,token)
         data = {"message": " {msg} "}
         st.success(f"Hello, {data}")
