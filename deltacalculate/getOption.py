@@ -10,6 +10,10 @@ from datetime import datetime, date
 #import pywhatkit as payval
 from decimal import Decimal
 
+logging.basicConfig(
+    level=logging.INFO,  # Set the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 def callEveryMinute(pe,ce,expirydate):
  logging.info("detail:: -----", pe, ce, expirydate)

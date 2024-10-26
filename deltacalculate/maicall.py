@@ -66,7 +66,7 @@ class DeltaValue:
   try:
     
     while True:
-        print("Task is Started to run...")
+        logging.info("Task is Started to run...")
         deltaValue =delta.callEveryMinute(pe,ce,expirydate)
         count = count+1 # Run the task
         print("Running -----")
