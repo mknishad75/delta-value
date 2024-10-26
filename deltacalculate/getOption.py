@@ -47,7 +47,7 @@ def callEveryMinute(pe,ce,expirydate):
 
         # Fetch data from NSE
         response = requests.get(url, headers=headers, verify=False)
-        #logging.info("response:: -----", response)
+        logging.info(f"response:: {response}")
         # Parse the response as JSON
         data = response.json()
 
