@@ -1,6 +1,7 @@
 import time
 import deltacalculate.getOption as delta
 from datetime import datetime
+import logging
 #import pywhatkit as kit
 
 count = 0
@@ -12,6 +13,7 @@ def recall(count, pe, ce,expirydate):
         while True:
             deltaValue =delta.callEveryMinute(pe,ce,expirydate)  # Run the task
             print("Running -----")
+            logging.info("Running -----")
             count = count+1
             # Get the current date and time
             current_datetime = datetime.now()
@@ -33,6 +35,7 @@ def recall(count, pe, ce,expirydate):
             time.sleep(60)  # Wait for 60 seconds before running again
 
     except Exception as e:
+         logging.info("exception -----")
          print("exception 1===================================================================================================", e)
          count = count+1
          if count == 10 :
@@ -68,6 +71,7 @@ class DeltaValue:
         deltaValue =delta.callEveryMinute(pe,ce,expirydate)
         count = count+1 # Run the task
         print("Running -----")
+        logging.info("Running -----")
         # Get the current date and time
         current_datetime = datetime.now()
         current_hour = current_datetime.hour
@@ -93,6 +97,7 @@ class DeltaValue:
       count =0
       #kit.sendwhatmsg('+919899096249','Service has error:', current_hour, current_minuteis)
       print("hey i am ready", count)
+    logging.info("exception -----")
     print("exception 2===================================================================================================", e)
     time.sleep(120)
     recall(count,pe,ce,expirydate)
