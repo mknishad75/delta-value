@@ -13,8 +13,8 @@ logging.basicConfig(
 
 def recall(count, pe, ce,expirydate):
     try:
-        while True:
-            logging.info("Entred in method -----")
+        #while True:
+            logging.info("Entred in recall method -----")
             deltaValue =delta.callEveryMinute(pe,ce,expirydate)  # Run the task
             print("Running -----")
             logging.info("Running -----")
@@ -65,7 +65,6 @@ class DeltaValue:
   count = 0
   try:
     
-    while True:
         logging.info("Task is Started to run...")
         deltaValue =delta.callEveryMinute(pe,ce,expirydate)
         count = count+1 # Run the task
