@@ -15,7 +15,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-def callEveryMinute(self,pe,ce,expirydate):
+def callEveryMinute(pe,ce,expirydate):
  logging.info("detail:: -----", pe, ce, expirydate)
  # Fetch Nifty option chain data from NSE API
  def fetch_nifty_option_chain():
@@ -44,7 +44,7 @@ def callEveryMinute(self,pe,ce,expirydate):
 
         # Fetch data from NSE
         response = requests.get(url, headers=headers, verify=False)
-
+        logging.info("response:: -----", response)
         # Parse the response as JSON
         data = response.json()
 
