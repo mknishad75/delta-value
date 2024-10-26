@@ -71,7 +71,7 @@ def callEveryMinute(pe,ce,expirydate):
  #expiry_date = "28-Nov-2024"  # Define the expiry date you want to filter
  expiry_date = expirydate
  filtered_option_chain = get_option_chain_for_expiry(symbol, expiry_date)
- #logging.info("filtered_option_chain -----", filtered_option_chain)
+ logging.info(f"filtered_option_chain:: {filtered_option_chain}")
 
 # Example usage
  # option_chain_data = fetch_nifty_option_chain()
@@ -85,7 +85,9 @@ def callEveryMinute(pe,ce,expirydate):
     usercode = code.read()       
  kite = KiteApp(username, usercode, enctoken)
 
-
+ logging.info(f"usercode::   {usercode}")
+ logging.info(f"enctoken:: {enctoken} ")
+ logging.info(f"username:: {username} ")
 # holding = kite.holdings()
  positionm = kite.positions()
  print(positionm)
@@ -101,8 +103,9 @@ def callEveryMinute(pe,ce,expirydate):
 
 # Fetch the instrument list
  instruments = kite.instruments()
+ logging.info(f"instruments:: {instruments} ")
  df_instruments = pd.DataFrame(instruments)
-
+ logging.info(f"df_instruments:: {df_instruments} ")
 # Specify the instrument token to search for
  #instrument_token1 = 12902146  # Replace with actual token PE
  #instrument_token2 = 12913922  #CE
