@@ -11,6 +11,7 @@ count = 0
 def recall(count, pe, ce,expirydate):
     try:
         while True:
+            logging.info("Entred in method -----")
             deltaValue =delta.callEveryMinute(pe,ce,expirydate)  # Run the task
             print("Running -----")
             logging.info("Running -----")
