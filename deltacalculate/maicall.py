@@ -1,7 +1,7 @@
 import time
 import deltacalculate.getOption as delta
 from datetime import datetime
-#import pywhatkit as kit
+import pywhatkit as kit
 
 count = 0
 
@@ -27,7 +27,7 @@ def recall(count, pe, ce,expirydate):
               string_num = str(deltaValue)
               value = deltaVal + string_num
               count =0
-              #kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
+              kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
               print("hey i am ready", count)
             print("Current Date and Time:", current_datetime)
             time.sleep(60)  # Wait for 60 seconds before running again
@@ -38,7 +38,7 @@ def recall(count, pe, ce,expirydate):
          if count == 10 :
             count =0
             
-            #kit.sendwhatmsg('+919899096249','Service is Running fine::', current_hour, current_minuteis)
+            kit.sendwhatmsg('+919899096249','Service has error::', current_hour, current_minuteis)
             print("hey i am ready", count)
          time.sleep(120)
          recall(count,pe,ce,expirydate)
@@ -83,15 +83,15 @@ class DeltaValue:
             string_num = str(deltaValue)
             value = deltaVal + string_num
             count =0
-            #kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
+            kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
             print("hey i am ready", count)
         time.sleep(80)  # Wait for 60 seconds before running again
   except Exception as e:
     
     count = count+1
-    if count == 10 :
+    if count == 2 :
       count =0
-      #kit.sendwhatmsg('+919899096249','Service is Running fine::', current_hour, current_minuteis)
+      kit.sendwhatmsg('+919899096249','Service has error:', current_hour, current_minuteis)
       print("hey i am ready", count)
     print("exception 2===================================================================================================", e)
     time.sleep(120)
@@ -102,11 +102,11 @@ class DeltaValue:
 class CreateToken:
   def token(self,name, userId, token):
         # Open the file in 'write' mode (overwrites any existing content)
-      with open('enctoken.txt', 'w') as file:
+      with open('deltacalculate/enctoken.txt', 'w') as file:
        file.write(token)
-      with open('userdetail.txt', 'w') as user: 
+      with open('deltacalculate/userdetail.txt', 'w') as user: 
        user.write(name)
-      with open('usercode.txt', 'w') as code:  
+      with open('deltacalculate/usercode.txt', 'w') as code:  
        code.write(userId)
        
       return 'Sucessfully added' 
