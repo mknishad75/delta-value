@@ -6,7 +6,10 @@ import logging
 
 count = 0
 
-
+logging.basicConfig(
+    level=logging.INFO,  # Set the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 def recall(count, pe, ce,expirydate):
     try:
