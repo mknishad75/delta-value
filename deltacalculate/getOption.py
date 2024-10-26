@@ -64,7 +64,7 @@ def callEveryMinute(pe,ce,expirydate):
  #expiry_date = "28-Nov-2024"  # Define the expiry date you want to filter
  expiry_date = expirydate
  filtered_option_chain = get_option_chain_for_expiry(symbol, expiry_date)
-
+ logging.info("filtered_option_chain -----", filtered_option_chain)
 
 # Example usage
  # option_chain_data = fetch_nifty_option_chain()
