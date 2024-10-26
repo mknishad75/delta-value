@@ -39,7 +39,7 @@ def recall(count, pe, ce,expirydate):
             time.sleep(60)  # Wait for 60 seconds before running again
 
     except Exception as e:
-         logging.info("exception 1-----",e)
+         logging.info("exception 1 :: {e}")
          print("exception 1===================================================================================================", e)
          count = count+1
          if count == 10 :
@@ -95,7 +95,7 @@ class DeltaValue:
       count =0
       #kit.sendwhatmsg('+919899096249','Service has error:', current_hour, current_minuteis)
       print("hey i am ready", count)
-    logging.info("exception 2 -----", e)
+    logging.info("exception 2 :: {e}")
     print("exception 2===================================================================================================", e)
     time.sleep(120)
     recall(count,pe,ce,expirydate)
