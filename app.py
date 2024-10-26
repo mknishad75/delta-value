@@ -6,45 +6,10 @@ from flask import Flask, jsonify
 from deltacalculate.maicall import DeltaValue, CreateToken
 
 # Flask API Setup
-app = Flask(__name__)
+
 value = DeltaValue()
 getToken = CreateToken()
 
-@app.route('/api/data', methods=['GET'])
-def get_data():
-   
-    data = {"message": "Hello from the integrated Flask API!, "}
-    return jsonify(data)
-# create token
-@app.route('/createtoken', methods=['POST'])
-def create_token():
-    data = requests.get_json() 
-    name= data.get('name')
-    id= data.get('userId')
-    token= data.get('token')
-    msg =getToken.token(name,id,token)
-    return msg
-
-#get value
-@app.route('/delta/<pe>', methods=['GET'])
-def get_itemValue():
-    print("i am in delta")
-  
-    item = value.calling(pe,ce,expirydate)
-    print(item)
-    #item = next((item for item in items if item['id'] == item_id), None)
-    if item:
-        return jsonify(item)
-    else:
-        return jsonify({"error": "Item not found"}), 404
-
-
-# Function to run Flask app on a separate thread
-def run_flask():
-    app.run(port=5000)
-
-# Start Flask app in a separate thread
-threading.Thread(target=run_flask).start()
 
 # Streamlit Interface
 st.title("Streamlit with Integrated Flask API")
