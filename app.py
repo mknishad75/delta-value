@@ -20,20 +20,25 @@ logging.basicConfig(
 st.title("Streamlit with Integrated Flask API")
 
 with st.form("user_form"):
- pe = st.number_input("Enter the first number", placeholder="Type PE here...")
- ce = st.number_input("Enter the second number", placeholder="Type CE here...")
- expirydate = st.text_input("Enter the second number",placeholder="Type expiry here...")
+ pe = st.number_input("Enter the PE number", placeholder="Type PE here...")
+ strikepriceSpotPE = st.number_input("Enter PE Spot Price", placeholder="Type PE Spot Price here...")
+ ce = st.number_input("Enter the CE number", placeholder="Type CE here...")
+ strikepriceSpotCE = st.number_input("Enter CE Spot Price", placeholder="Type CE Spot Price here...")
+ niftySpotPrice = st.number_input("Enter NIFTY Spot Price", placeholder="Type NIFT Spot Price here...")
+ expirydate = st.text_input("Enter the Expiry",placeholder="Type expiry here...")
  submitted = st.form_submit_button("Submit")
  
 if submitted:    
    if pe and ce and expirydate:
        logging.info("Entred in method -----")
-       item = value.calling(pe,ce,expirydate)
+       item = value.calling(pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikepriceSpotCE)
+       logging.info(f"detail is :{item}") 
+       st.success(f"delta Value, {item}")
        
 st.title("Fill the form to create the token")
 with st.form("create_token"):
- name = st.text_input("Enter the username", placeholder="Type PE here...")
- id = st.text_input("Enter the code", placeholder="Type CE here...")
+ name = st.text_input("Enter the username", placeholder="Type user name here...")
+ id = st.text_input("Enter the code", placeholder="Type user code here...")
  token = st.text_input("Enter the token",placeholder="Type expiry here...")
  submitted = st.form_submit_button("Submit")
  

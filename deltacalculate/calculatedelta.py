@@ -30,7 +30,10 @@ sigma = 0.18  # Implied volatility (18%)
 
 
 
-
+# nifty spot price S
+# K strike price 24000
+#market price for spot 
+# expiry_date_str '28-Nov-2024
 # Parse the option chain data to calculate Delta for each option
 def parse_and_calculate_delta(option_chain_data,formatted_date,strikeprice,insturment_type):
     #records = option_chain_data['records']['data']
@@ -76,6 +79,57 @@ def parse_and_calculate_delta(option_chain_data,formatted_date,strikeprice,instu
             if(iv_call==""):iv_call = 0.10
             delta_put = calculate_delta(S, K, time_to_expiry_years, r, iv_call, option_type='put')
             print(f"Put Option - Strike Price: {strike_price}, Delta: {delta_put}")
+            Dict['PE'] = delta_put
+    
+    return Dict
+
+# nifty spot price S
+# K strike price 24000
+#market price for spot 
+# expiry_date_str '28-Nov-2024
+# Parse the option chain data to calculate Delta for each option
+def parse_and_calculate_delta_static(niftySpotPrice, strikepriceint, strikepriceSpot,expiry, insturment_type):
+    #records = option_chain_data['records']['data']
+    Dict = {}
+ 
+
+       
+ 
+          # Call option data
+          # Put option data
+         
+    if 'CE'==insturment_type:
+            S = niftySpotPrice  # Nifty spot price
+            K = strikepriceint
+           # T = ce_data['expiryDate']  # Calculate the time to expiry in years
+            T = 3
+            market_price = strikepriceSpot  # This is the observed market price
+            expiry_date_str =expiry  # Nifty expiry date as a string
+            time_to_expiry_years = calculate_time_to_expiry(expiry_date_str)
+            r = 0.10  # Risk-free interest rate
+            #sigma = ce_data['impliedVolatility']
+            sigma = 0.093  # Implied volatility (can be estimated)
+            iv_call = implied_volatility(S, K, time_to_expiry_years, r, market_price, option_type='call')
+            if(iv_call=="None"):iv_call = 0.10
+            delta_call = calculate_delta(S, K, time_to_expiry_years, r, iv_call, option_type='call')
+            print(f"Call Option - Strike Price: {strikepriceint}, Delta: {delta_call}")
+            Dict['CE'] = delta_call
+        
+    if 'PE'==insturment_type:
+            S = niftySpotPrice  # Nifty spot price
+            K = strikepriceint
+           # T = pe_data['expiryDate']  # Calculate the time to expiry in years
+            T = 3
+            market_price = strikepriceSpot
+            expiry_date_str =expiry  # Nifty expiry date as a string
+            time_to_expiry_years = calculate_time_to_expiry(expiry_date_str)
+            r = 0.10  # Risk-free interest rate
+            #sigma = pe_data['impliedVolatility']
+            sigma =  0.093  # Implied volatility (can be estimated)
+            iv_call = implied_volatility(S, K, time_to_expiry_years, r, market_price, option_type='put')
+            if(iv_call==""):iv_call = 0.10
+            delta_put = calculate_delta(S, K, time_to_expiry_years, r, iv_call, option_type='put')
+            print(f"Put Option - Strike Price: {strikepriceint}, Delta: {delta_put}")
             Dict['PE'] = delta_put
     
     return Dict

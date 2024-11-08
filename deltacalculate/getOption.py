@@ -7,58 +7,27 @@ from deltacalculate.kiteapp import *
 from kiteconnect import KiteConnect
 import pandas as pd
 from datetime import datetime, date
-#import pywhatkit as payval
+import pywhatkit as payval
 from decimal import Decimal
 
 logging.basicConfig(
-    level=logging.INFO,  # Set the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    level=logging.DEBUG,  # Set the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-def callEveryMinute(pe,ce,expirydate):
+def callEveryMinute(pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikepriceSpotCE):
    
  logging.info(f"detail PE is :{pe}")
  logging.info(f"detail CE is :{ce}")
  logging.info(f"detail Expiry is :{expirydate}")
  # Fetch Nifty option chain data from NSE API
- def fetch_nifty_option_chain():
-        url = "https://www.nseindia.com/api/option-chain-indices?symbol=NIFTY"
-        headers = {
-            "User-Agent": "Mozilla/5.0",
-            "Accept": "application/json"
-        }
-        response = requests.get(url, headers=headers, verify=False)
-        option_chain_data = response.json()
-        return option_chain_data
+
 
 
 # Function to fetch and filter option chain by expiry date
 
 
- def get_option_chain_for_expiry(symbol, expiry_date):
-        # Define the URL for fetching option chain data
-        url = "https://www.nseindia.com/api/option-chain-indices?symbol=NIFTY"
 
-        # Define the headers for the request
-        headers = {
-            "User-Agent": "Mozilla/5.0",
-            "Accept": "application/json"
-        }
-
-        # Fetch data from NSE
-        response = requests.get(url, headers=headers, verify=False)
-        logging.info(f"response:: {response}")
-        # Parse the response as JSON
-        data = response.json()
-
-        # Extract the records from the data
-        records = data['records']['data']
-
-        # Filter data for the specific expiry date
-        filtered_data = [
-            entry for entry in records if entry['expiryDate'] == expiry_date]
-
-        return filtered_data
 
 
 # Example usage
@@ -70,8 +39,8 @@ def callEveryMinute(pe,ce,expirydate):
  symbol = "NIFTY"
  #expiry_date = "28-Nov-2024"  # Define the expiry date you want to filter
  expiry_date = expirydate
- filtered_option_chain = get_option_chain_for_expiry(symbol, expiry_date)
- logging.info(f"filtered_option_chain:: {filtered_option_chain}")
+ #filtered_option_chain = get_option_chain_for_expiry(symbol, expiry_date)
+ #logging.info(f"filtered_option_chain:: {filtered_option_chain}")
 
 # Example usage
  # option_chain_data = fetch_nifty_option_chain()
@@ -103,9 +72,9 @@ def callEveryMinute(pe,ce,expirydate):
 
 # Fetch the instrument list
  instruments = kite.instruments()
- logging.info(f"instruments:: {instruments} ")
+ #logging.info(f"instruments:: {instruments} ")
  df_instruments = pd.DataFrame(instruments)
- logging.info(f"df_instruments:: {df_instruments} ")
+ #logging.info(f"df_instruments:: {df_instruments} ")
 # Specify the instrument token to search for
  #instrument_token1 = 12902146  # Replace with actual token PE
  #instrument_token2 = 12913922  #CE
@@ -120,7 +89,7 @@ def callEveryMinute(pe,ce,expirydate):
 # Filter the instrument list for the matching token
  nifty_option = df_instruments[df_instruments['instrument_token']
                               == instrument_token1]
-
+ #logging.info(f"nifty_option:: {nifty_option} ")
 # Extract and print the details if found
  if not nifty_option.empty:
     expiry_date = nifty_option.iloc[0]['expiry']
@@ -137,6 +106,8 @@ def callEveryMinute(pe,ce,expirydate):
 
 # Convert to integer
  strikepriceint = int(strikeprice)
+ 
+ 
 
 # records = positionm['net']
 # str = 'NIFTY24SEP25350PE'
@@ -145,18 +116,23 @@ def callEveryMinute(pe,ce,expirydate):
 # Convert the string into a datetime objec
  date_obj = pd.to_datetime(expiry_date)
 # Format the date to "DD-MMM-YYYY"
- formatted_date = date_obj.strftime("%d-%b-%Y")
+ expiry = date_obj.strftime("%d-%b-%Y")
 
- print('date', formatted_date)
+ print('date', expiry)
+
+# nifty spot price S
+# K strike price 24000
+#market price for spot 
+# expiry_date_str '28-Nov-2024
 
 
 # Example usage
- if filtered_option_chain:
-    disct = delta.parse_and_calculate_delta(
-        filtered_option_chain, formatted_date, strikepriceint, insturment_type)
-    print('disct is ===', disct)
-    pedelta = disct['PE']
-    print('pedelta is ===', pedelta)
+
+ disct = delta.parse_and_calculate_delta_static(niftySpotPrice, strikepriceint, strikepriceSpotPE,expiry, insturment_type)
+ print('disct is ===', disct)
+ pedelta = disct['PE']
+ logging.info(f"pedelta::   {pedelta}")
+ print('pedelta is ===', pedelta)
 
 # Filter the instrument list for the matching token
  nifty_option = df_instruments[df_instruments['instrument_token']
@@ -186,13 +162,20 @@ def callEveryMinute(pe,ce,expirydate):
 # Convert the string into a datetime objec
  date_obj = pd.to_datetime(expiry_date)
 # Format the date to "DD-MMM-YYYY"
- formatted_date = date_obj.strftime("%d-%b-%Y")
+ #formatted_date = date_obj.strftime("%d-%b-%Y")
+ expiry = date_obj.strftime("%d-%b-%Y")
+ 
+ 
+ # nifty spot price S
+# K strike price 24000
+#market price for spot 
+# expiry_date_str '28-Nov-2024
 
- if filtered_option_chain:
-    disct = delta.parse_and_calculate_delta(
-        filtered_option_chain, formatted_date, strikepriceint, insturment_type)
-    cedelta = disct['CE']
-    print('CEdelta is ===', cedelta)
+
+ disct = delta.parse_and_calculate_delta_static(niftySpotPrice, strikepriceint, strikepriceSpotCE,expiry, insturment_type)
+ cedelta = disct['CE']
+ logging.info(f"cedelta::   {cedelta}")
+ print('CEdelta is ===', cedelta)
 
  absolute_difference = abs(cedelta) - abs(pedelta)
  absolute_differencenew = round(absolute_difference, 2)
@@ -210,15 +193,15 @@ def callEveryMinute(pe,ce,expirydate):
     value = deltaVal + deltaString
     print("delta is:::",value)
 
-    #payval.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
+    payval.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
     print("going to start take new psotion")
     if abs(cedelta) < abs(pedelta):
         print("going to exit ce position")
         # exit call
         # find ce delta price as same of pe delta
       
-        strikepriceforentry =delta.parse_and_find_delta(
-            filtered_option_chain, formatted_date, 'CE', pedelta)
+       # strikepriceforentry =delta.parse_and_find_delta(
+        #    filtered_option_chain, formatted_date, 'CE', pedelta)
         print("gooing to excute this stirke price", strikepriceforentry)
 
     if abs(cedelta) > abs(pedelta):
@@ -226,8 +209,8 @@ def callEveryMinute(pe,ce,expirydate):
         # exit call
         # find ce delta price as same of pe delta
       
-        strikepriceforentry = delta.parse_and_find_delta(
-            filtered_option_chain, formatted_date, 'PE', cedelta)
+        #strikepriceforentry = delta.parse_and_find_delta(
+        #    filtered_option_chain, formatted_date, 'PE', cedelta)
         print("gooing to excute this stirke price", strikepriceforentry)
 
  

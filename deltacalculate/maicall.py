@@ -2,7 +2,7 @@ import time
 import deltacalculate.getOption as delta
 from datetime import datetime
 import logging
-#import pywhatkit as kit
+import pywhatkit as kit
 
 count = 0
 
@@ -11,11 +11,11 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-def recall(count, pe, ce,expirydate):
+def recall(count,pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikepriceSpotCE):
     try:
         #while True:
             logging.info("Entred in recall method -----")
-            deltaValue =delta.callEveryMinute(pe,ce,expirydate)  # Run the task
+            deltaValue =delta.callEveryMinute(pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikepriceSpotCE)  # Run the task
             print("Running -----")
             logging.info("Running -----")
             count = count+1
@@ -33,7 +33,7 @@ def recall(count, pe, ce,expirydate):
               string_num = str(deltaValue)
               value = deltaVal + string_num
               count =0
-              #kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
+              kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
               print("hey i am ready", count)
             print("Current Date and Time:", current_datetime)
             time.sleep(60)  # Wait for 60 seconds before running again
@@ -45,28 +45,29 @@ def recall(count, pe, ce,expirydate):
          if count == 10 :
             count =0
             
-            #kit.sendwhatmsg('+919899096249','Service has error::', current_hour, current_minuteis)
+            kit.sendwhatmsg('+919899096249','Service has error::', current_hour, current_minuteis)
             print("hey i am ready", count)
          time.sleep(120)
          recall(count,pe,ce,expirydate)
 
 
-items = [
-    {"id": 1, "name": "Item 1", "price": 15.00},
-    {"id": 2, "name": "Item 2", "price": 25.00},
-    {"id": 3, "name": "Item 3", "price": 35.00}
-]
-
 
 class DeltaValue:
 
+ def calling(self,pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikepriceSpotCE):
+   deltaValue =delta.callEveryMinute(pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikepriceSpotCE)
+   
+   return deltaValue
+   
 
- def calling(self,pe,ce,expirydate):
+
+
+ def calling1(self,pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikepriceSpotCE):
   count = 0
   try:
     
         logging.info("Task is Started to run...")
-        deltaValue =delta.callEveryMinute(pe,ce,expirydate)
+        deltaValue =delta.callEveryMinute(pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikepriceSpotCE)
         count = count+1 # Run the task
         print("Running -----")
         logging.info("Running -----")
@@ -85,7 +86,7 @@ class DeltaValue:
             string_num = str(deltaValue)
             value = deltaVal + string_num
             count =0
-            #kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
+            kit.sendwhatmsg('+919899096249',value, current_hour, current_minuteis)
             print("hey i am ready", count)
         time.sleep(80)  # Wait for 60 seconds before running again
   except Exception as e:
@@ -93,13 +94,13 @@ class DeltaValue:
     count = count+1
     if count == 2 :
       count =0
-      #kit.sendwhatmsg('+919899096249','Service has error:', current_hour, current_minuteis)
+      kit.sendwhatmsg('+919899096249','Service has error:', current_hour, current_minuteis)
       print("hey i am ready", count)
     logging.info(f"exception 2 :: {e}")
     print("exception 2===================================================================================================", e)
     time.sleep(120)
-    recall(count,pe,ce,expirydate)
-  return self.e
+    recall(count,pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikepriceSpotCE)
+  #return self.e
 
 
 class CreateToken:
