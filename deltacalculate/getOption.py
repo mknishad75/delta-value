@@ -54,9 +54,9 @@ def callEveryMinute(pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikep
     usercode = code.read()       
  kite = KiteApp(username, usercode, enctoken)
 
- logging.info(f"usercode::   {usercode}")
- logging.info(f"enctoken:: {enctoken} ")
- logging.info(f"username:: {username} ")
+ #logging.info(f"usercode::   {usercode}")
+ #logging.info(f"enctoken:: {enctoken} ")
+ #logging.info(f"username:: {username} ")
 # holding = kite.holdings()
  positionm = kite.positions()
  print(positionm)
