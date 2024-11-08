@@ -11,7 +11,7 @@ from datetime import datetime, date
 from decimal import Decimal
 
 logging.basicConfig(
-    level=logging.DEBUG,  # Set the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    level=logging.INFO,  # Set the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
