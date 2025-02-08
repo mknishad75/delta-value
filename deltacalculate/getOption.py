@@ -14,6 +14,18 @@ logging.basicConfig(
     level=logging.INFO,  # Set the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
+TELEGRAM_BOT_TOKEN = "7196489801:AAEtN8UxDlPjO8_5RdkeVen9dfs0H7LyW2M"
+CHAT_ID = "5102108402"
+
+def send_telegram_message(message):
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    payload = {
+        "chat_id": CHAT_ID,
+        "text": message,
+        "parse_mode": "Markdown",
+    }
+    response = requests.post(url, json=payload)
+    return response.json()
 
 def callEveryMinute(pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikepriceSpotCE):
    
@@ -180,6 +192,7 @@ def callEveryMinute(pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikep
  absolute_difference = abs(cedelta) - abs(pedelta)
  absolute_differencenew = round(absolute_difference, 2)
  print("The absolute difference is:", absolute_differencenew)
+ send_telegram_message(f"current delta Value is :: {absolute_differencenew}")
  
 
  if abs(absolute_differencenew) >= 0.17:

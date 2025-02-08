@@ -2,7 +2,12 @@ import time
 import deltacalculate.getOption as delta
 from datetime import datetime
 import logging
+import requests
 #import pywhatkit as kit
+
+
+TELEGRAM_BOT_TOKEN = "7196489801:AAEtN8UxDlPjO8_5RdkeVen9dfs0H7LyW2M"
+CHAT_ID = "5102108402"
 
 count = 0
 
@@ -10,6 +15,16 @@ logging.basicConfig(
     level=logging.INFO,  # Set the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
+
+def send_telegram_message(message):
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    payload = {
+        "chat_id": CHAT_ID,
+        "text": message,
+        "parse_mode": "Markdown",
+    }
+    response = requests.post(url, json=payload)
+    return response.json()
 
 def recall(count,pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikepriceSpotCE):
     try:
@@ -112,5 +127,6 @@ class CreateToken:
        user.write(name)
       with open('deltacalculate/usercode.txt', 'w') as code:  
        code.write(userId)
-       
+      
+      
       return 'Sucessfully added' 
