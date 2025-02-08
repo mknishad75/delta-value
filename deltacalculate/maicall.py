@@ -6,8 +6,7 @@ import requests
 #import pywhatkit as kit
 
 
-TELEGRAM_BOT_TOKEN = "7196489801:AAEtN8UxDlPjO8_5RdkeVen9dfs0H7LyW2M"
-CHAT_ID = "5102108402"
+
 
 count = 0
 
@@ -16,15 +15,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-def send_telegram_message(message):
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": CHAT_ID,
-        "text": message,
-        "parse_mode": "Markdown",
-    }
-    response = requests.post(url, json=payload)
-    return response.json()
+
 
 def recall(count,pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikepriceSpotCE):
     try:
