@@ -73,7 +73,8 @@ def callEveryMinute(pe,ce,expirydate, niftySpotPrice, strikepriceSpotPE, strikep
  positionm = kite.positions()
  print(positionm)
  ins = kite.profile()
- print(ins)
+ 
+ logging.info(f"Kite profie is :{ins}")
 
 # Initialize KiteConnect with your API key
 # kite = KiteConnect(api_key="your_api_key")
